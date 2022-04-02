@@ -8,7 +8,6 @@ Try the demo at https://quotesos.netlify.app
 
 - Create React App
 - React Router
-- Redux Devtools Extension for Chrome
 - Firebase
 
 ## Quick Start
