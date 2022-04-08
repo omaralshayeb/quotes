@@ -14,11 +14,11 @@ const QuoteForm = props => {
   function submitFormHandler(event) {
     event.preventDefault();
 
+    //Gathering input data
     const enteredAuthor = authorInputRef.current.value;
     const enteredText = textInputRef.current.value;
 
-    // optional: Could validate here
-
+    //making POST request
     props.onAddQuote({ author: enteredAuthor, text: enteredText });
   }
 

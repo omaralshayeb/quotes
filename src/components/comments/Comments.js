@@ -16,6 +16,7 @@ const Comments = () => {
 
   const { sendRequest, status, data: loadedComments } = useHttp(getAllComments);
 
+  //fetch all comments for a quote
   useEffect(() => {
     sendRequest(quoteId);
   }, [quoteId, sendRequest]);
@@ -39,6 +40,7 @@ const Comments = () => {
   }
 
   if (status === 'completed' && loadedComments && loadedComments.length > 0) {
+    //passing comments to CommentList
     comments = <CommentsList comments={loadedComments} />;
   }
 

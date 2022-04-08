@@ -6,6 +6,8 @@ import LoadingSpinner from '../components/UI/LoadingSpinner';
 import NoQuotesFound from '../components/quotes/NoQuotesFound';
 
 const AllQuotes = () => {
+  //using the custom hook to get state and http function
+  //and loading it with an api function
   const {
     sendRequest,
     status,
@@ -13,9 +15,12 @@ const AllQuotes = () => {
     error,
   } = useHttp(getAllQuotes, true);
 
+  //making the request to get all quotes on startup
   useEffect(() => {
     sendRequest();
   }, [sendRequest]);
+
+  //rendering spinner, error or data based on state variables...
 
   if (status === 'pending') {
     return (
@@ -33,6 +38,7 @@ const AllQuotes = () => {
     return <NoQuotesFound />;
   }
 
+  //passing data to QuoteList
   return <QuoteList quotes={loadedQuotes} />;
 };
 

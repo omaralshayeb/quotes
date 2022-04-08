@@ -18,6 +18,7 @@ const QuoteDetail = () => {
     error,
   } = useHttp(getSingleQuote, true);
 
+  //fetching a quote based on ID
   useEffect(() => {
     sendRequest(quoteId);
   }, [sendRequest, quoteId]);

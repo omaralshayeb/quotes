@@ -1,5 +1,9 @@
+//This api will provide different functions making different http
+//requests to Firebase
+
 const FIREBASE_DOMAIN = 'https://refire-795c9-default-rtdb.firebaseio.com';
 
+//Fetching All Quotes
 export async function getAllQuotes() {
   const response = await fetch(`${FIREBASE_DOMAIN}/quotes.json`);
   const data = await response.json();
@@ -8,6 +12,7 @@ export async function getAllQuotes() {
     throw new Error(data.message || 'Could not fetch quotes.');
   }
 
+  //formatting data
   const transformedQuotes = [];
 
   for (const key in data) {
@@ -22,6 +27,7 @@ export async function getAllQuotes() {
   return transformedQuotes;
 }
 
+//Fetching one quote based on ID
 export async function getSingleQuote(quoteId) {
   const response = await fetch(`${FIREBASE_DOMAIN}/quotes/${quoteId}.json`);
   const data = await response.json();
@@ -38,6 +44,7 @@ export async function getSingleQuote(quoteId) {
   return loadedQuote;
 }
 
+//Adding a quote
 export async function addQuote(quoteData) {
   const response = await fetch(`${FIREBASE_DOMAIN}/quotes.json`, {
     method: 'POST',

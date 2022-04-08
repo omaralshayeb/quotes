@@ -12,6 +12,7 @@ const NewCommentForm = props => {
 
   const { onAddedComment } = props;
 
+  //fetching all comments on state changes
   useEffect(() => {
     if (status === 'completed' && !error) {
       onAddedComment();
@@ -22,8 +23,8 @@ const NewCommentForm = props => {
     event.preventDefault();
 
     const enteredText = commentTextRef.current.value;
-    // optional: Could validate here
 
+    //POSTing a comment
     sendRequest({ commentData: { text: enteredText }, quoteId: props.quoteId });
   };
 

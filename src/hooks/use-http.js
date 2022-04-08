@@ -1,3 +1,6 @@
+//This custom hook will handle making http request and the
+// state of it utilizing useReducer
+
 import { useReducer, useCallback } from 'react';
 
 function httpReducer(state, action) {
@@ -35,6 +38,8 @@ function useHttp(requestFunction, startWithPending = false) {
     error: null,
   });
 
+  //the actuall function that will make the http request using the functions coming
+  //from lib/abi.js
   const sendRequest = useCallback(
     async function (requestData) {
       dispatch({ type: 'SEND' });
@@ -51,6 +56,8 @@ function useHttp(requestFunction, startWithPending = false) {
     [requestFunction]
   );
 
+  //the hook will retrun the function that'll make the request to call it whenever we need,
+  //and the the request stateto utilize it in the components
   return {
     sendRequest,
     ...httpState,

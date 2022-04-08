@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import QuoteItem from './QuoteItem';
 import classes from './QuoteList.module.css';
 
+//helper function to sort quotes
 const sortQuotes = (quotes, ascending) => {
   return quotes.sort((quoteA, quoteB) => {
     if (ascending) {
@@ -18,18 +19,16 @@ const QuoteList = props => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  //getting query parameters
   const queryParams = new URLSearchParams(location.search);
 
   const isSortingAscending = queryParams.get('sort') === 'asc';
 
   const sortedQuotes = sortQuotes(props.quotes, isSortingAscending);
 
+  //change sorting param according to button
   const changeSortingHandler = () => {
     navigate(`?sort=${isSortingAscending ? 'desc' : 'asc'}`);
-    // navigate({
-    //   pathname: location.pathname,
-    //   search: `?sort=${isSortingAscending ? 'desc' : 'asc'}`,
-    // });
   };
 
   return (
